@@ -8,7 +8,7 @@ A command line tool to generate PDF and text files from csv data and Freemarker 
 usage: csv2pdf<br>
 &nbsp;&nbsp;-csv_charset <arg>     CSV file charset (optional default 'UTF-8')<br>
 &nbsp;&nbsp;-csv_extension <arg>   CSV file extesion (optional default '')<br>
-&nbsp;&nbsp;-csv_file <arg>        CSV input file<br>
+&nbsp;&nbsp;-csv_file <arg>        CSV input file (optional, use instead -csv_query)<br>
 &nbsp;&nbsp;-csv_folder <arg>      CSV folder path (optional default '.')<br>
 &nbsp;&nbsp;-csv_query <arg>       CSV query command (optional, use instead -csv_file)<br>
 &nbsp;&nbsp;-csv_separator <arg>   CSV separator character (optional default ';')<br>
