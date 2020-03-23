@@ -5,6 +5,7 @@
 🔥A command line tool to generate PDF (using Flyingsaucer) or text files from csv data and Freemarker templates🔥
 <br>
 
+#### How it works?
 <pre>
 +--------------+           +--------------+                                                    
 |   CSV data   |           | FTL Template |                                                   
