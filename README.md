@@ -4,6 +4,24 @@
 <br>
 🔥A command line tool to generate PDF (using Flyingsaucer) or text files from csv data and Freemarker templates🔥
 <br>
+
+<pre>
++--------------+           +--------------+                                                    
+|   CSV data   |           | FTL Template |                                                   
++--------------+           +--------------+                                                   
+        |                          |                                                          
+        |                          |                                                           
+        |                          |                                                           
++--------------+           +--------------+         +--------------+          +--------------+ 
+|   CsvJDBC    |-----------|  Freemarker  |---------|    JSoup     |----------| FlyingSaucer | 
++--------------+           +--------------+         +--------------+          +--------------+ 
+                                   |                                                  |        
+                                   |                                                  |        
+                                   |                                                  |        
+                           +--------------+                                   +--------------+ 
+                           |   TXT file   |                                   |   PDF file   | 
+                           +--------------+                                   +--------------+ 
+</pre>
 <br>
 ### Usage: 
 java -jar csv2pdf.jar &lt;options&gt;
@@ -31,3 +49,5 @@ java -jar csv2pdf.jar &lt;options&gt;
 ## Example:<br>
 &nbsp;&nbsp;java -jar csv2pdf.jar -csv_file data.csv -ftl_file template.ftl -pdf output.pdf
 <br>
+
+
