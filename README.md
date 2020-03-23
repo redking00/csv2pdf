@@ -46,7 +46,8 @@ java -jar csv2pdf.jar &lt;options&gt;
 <br>
 
 ### NOTES:<br>
- - Iterate "*rows*" collection if you aren´t using the *-for_each* option
+ - Iterate "*rows*" collection inside your template if you are not using the *-for_each* option
+ - See the examples folder!
  
 #### Example 1:<br>
 &nbsp;&nbsp;java -jar csv2pdf.jar -csv_file data.csv -ftl_file template.ftl -pdf output.pdf
