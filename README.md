@@ -45,14 +45,14 @@ java -jar csv2pdf.jar &lt;options&gt;
 </table>
 <br>
 
-#### NOTES:<br>
+### NOTES:<br>
  - Iterate "*rows*" collection if you aren´t using the *-for_each* option
  
-## Example 1:<br>
+#### Example 1:<br>
 &nbsp;&nbsp;java -jar csv2pdf.jar -csv_file data.csv -ftl_file template.ftl -pdf output.pdf
 <br>
 
-## Example 2:<br>
+#### Example 2:<br>
 &nbsp;&nbsp;java -jar csv2pdf.jar -csv_file data.csv -ftl_file template2.ftl -for_each -pdf 'output_${id}.pdf'
 <br>
 
