@@ -25,6 +25,9 @@
 </pre>
 <br>
 
+### Build: 
+mvn clean package
+
 ### Usage: 
 java -jar csv2pdf.jar &lt;options&gt;
 
