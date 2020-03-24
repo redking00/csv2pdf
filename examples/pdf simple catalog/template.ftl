@@ -1,5 +1,9 @@
 <html>
 <head>
+    <meta name="title" content="A simple catalog">
+    <meta name="keywords" content="PDF,CSV,JAVA,FTL,FREEMARKER,FLYINGSAUCER">
+    <meta name="subject" content="A really ugly catalog">
+    <meta name="author" content="It´s me">
     <style>
         @page {
             size: A4 portrait;
