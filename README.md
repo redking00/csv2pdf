@@ -27,10 +27,10 @@
 <br>
 
 ### Build: 
-mvn clean package
+&nbsp;&nbsp;mvn clean package
 
 ### Usage: 
-java -jar csv2pdf.jar &lt;options&gt;
+&nbsp;&nbsp;java -jar csv2pdf.jar &lt;options&gt;
 
 ### Options: 
 <table>
@@ -51,6 +51,7 @@ java -jar csv2pdf.jar &lt;options&gt;
 
 ### NOTES:<br>
  - Iterate "*rows*" collection inside your template if you are not using the *-for_each* option
+ - You can use a templated output file name if using the *-for_each* option
  - See the examples folder!
  
 #### Example 1:<br>
