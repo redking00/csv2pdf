@@ -8,7 +8,7 @@
 #### How it works?
 <pre>
 +--------------+           +--------------+                                                    
-|   CSV data   |           | FTL Template |                                                   
+|   CSV data   |           | FTL template |                                                   
 +--------------+           +--------------+                                                   
         |                          |                                                          
         |                          |                                                           
