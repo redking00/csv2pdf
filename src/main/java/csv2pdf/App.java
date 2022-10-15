@@ -62,7 +62,7 @@ public class App {
         System.out.println("| / /__(__  )| |/ / __// /_/ / /_/ / __/   |");
         System.out.println("| \\___/____/ |___/____/ .___/\\__,_/_/      |");
         System.out.println("|                    /_/                   |");
-        System.out.println("|                                   v.1.0  |");
+        System.out.println("|                                 v.1.0.2  |");
         System.out.println("·------------------------------------------·");
 
         Options options = new Options();
