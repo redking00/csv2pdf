@@ -1,12 +1,12 @@
 package csv2pdf;
 
 import freemarker.template.Configuration;
-import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.Template;
-import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.StringWriter;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -26,10 +26,9 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 
 public class App {
     private static String getUniqueFilename(String name) {
-        String result = FileSystems.getDefault().getPath(name, new String[0]).toFile().exists()
+        return FileSystems.getDefault().getPath(name).toFile().exists()
                 ? System.currentTimeMillis() + "_" + name
                 : name;
-        return result;
     }
 
     private static ArrayList<HashMap<String, Object>> getData(String folder, String separator, String extension,
@@ -39,7 +38,7 @@ public class App {
         Connection conn = DriverManager.getConnection("jdbc:relique:csv:" + folder + "?separator=" + separator
                 + "&fileExtension=" + extension + "&charset=" + charset);
 
-        Statement stmt = conn.createStatement(1005, 1007);
+        Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
         ResultSet results = stmt.executeQuery(query);
         while (results.next()) {
             int columns = results.getMetaData().getColumnCount();
@@ -53,8 +52,7 @@ public class App {
     }
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException,
-            freemarker.template.TemplateNotFoundException, MalformedTemplateNameException,
-            freemarker.core.ParseException, java.io.IOException, freemarker.template.TemplateException {
+            java.io.IOException, freemarker.template.TemplateException {
         System.out.println("·------------------------------------------·");
         System.out.println("|                   ___             ______ |");
         System.out.println("|   ___________   _|__ \\ ____  ____/ / __/ |");
@@ -62,7 +60,7 @@ public class App {
         System.out.println("| / /__(__  )| |/ / __// /_/ / /_/ / __/   |");
         System.out.println("| \\___/____/ |___/____/ .___/\\__,_/_/      |");
         System.out.println("|                    /_/                   |");
-        System.out.println("|                                 v.1.0.2  |");
+        System.out.println("|                                 v.1.0.3  |");
         System.out.println("·------------------------------------------·");
 
         Options options = new Options();
@@ -133,7 +131,7 @@ public class App {
                     String ftlFile = cmd.getOptionValue("ftl_file");
                     String ftlEncoding = cmd.getOptionValue("ftl_encoding", "UTF-8");
                     Configuration cfg = new Configuration(Configuration.VERSION_2_3_30);
-                    cfg.setDirectoryForTemplateLoading(FileSystems.getDefault().getPath(".", new String[0]).toFile());
+                    cfg.setDirectoryForTemplateLoading(FileSystems.getDefault().getPath(".").toFile());
                     cfg.setDefaultEncoding(ftlEncoding);
                     Template template = cfg.getTemplate(ftlFile);
                     ITextRenderer renderer = cmd.hasOption("pdf") ? new ITextRenderer() : null;
@@ -146,8 +144,8 @@ public class App {
                                 getUniqueFilename(StringSubstitutor.replace(cmd.getOptionValue("pdf"), row)):
                                 getUniqueFilename(StringSubstitutor.replace(cmd.getOptionValue("txt"), row));
                             System.out.print("[+] Generating file: " + fileName);
-                            OutputStream outputStream = new FileOutputStream(fileName);
-                            if (renderer==null) 
+                            OutputStream outputStream = Files.newOutputStream(Paths.get(fileName));
+                            if (renderer==null)
                                 outputStream.write(sw.toString().getBytes(cmd.getOptionValue("txt_charset", "UTF-8")));
                             else {
                                 Document doc = Jsoup.parse(sw.toString());
@@ -155,7 +153,7 @@ public class App {
                                 renderer.setDocumentFromString(doc.html());
                                 renderer.layout();
                                 renderer.createPDF(outputStream);
-                            } 
+                            }
                             outputStream.close();
                             System.out.println("  OK");
                         }
@@ -165,11 +163,11 @@ public class App {
                         model.put("rows", rows);
                         StringWriter sw = new StringWriter();
                         template.process(model, sw);
-                        String fileName = (renderer != null)? 
+                        String fileName = (renderer != null)?
                             getUniqueFilename(cmd.getOptionValue("pdf")):
                             getUniqueFilename(cmd.getOptionValue("txt"));
                         System.out.print("[+] Generating file: " + fileName);
-                        OutputStream outputStream = new FileOutputStream(fileName);
+                        OutputStream outputStream = Files.newOutputStream(Paths.get(fileName));
                         if (renderer==null)
                             outputStream.write(sw.toString().getBytes(cmd.getOptionValue("txt_charset", "UTF-8")));
                         else {
@@ -178,7 +176,7 @@ public class App {
                             renderer.setDocumentFromString(doc.html());
                             renderer.layout();
                             renderer.createPDF(outputStream);
-                        } 
+                        }
                         outputStream.close();
                         System.out.println("  OK");
                     }
