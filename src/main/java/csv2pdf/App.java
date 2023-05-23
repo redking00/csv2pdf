@@ -60,7 +60,7 @@ public class App {
         System.out.println("| / /__(__  )| |/ / __// /_/ / /_/ / __/   |");
         System.out.println("| \\___/____/ |___/____/ .___/\\__,_/_/      |");
         System.out.println("|                    /_/                   |");
-        System.out.println("|                                 v.1.0.3  |");
+        System.out.println("|                                 v.2.0.0  |");
         System.out.println("·------------------------------------------·");
 
         Options options = new Options();
@@ -71,7 +71,7 @@ public class App {
         Option csvSeparatorOption = new Option("csv_separator", true, "CSV separator character (optional default ';')");
         csvSeparatorOption.setRequired(false);
 
-        Option csvExtensionOption = new Option("csv_extension", true, "CSV file extesion (optional default '')");
+        Option csvExtensionOption = new Option("csv_extension", true, "CSV file extension (optional default '')");
         csvExtensionOption.setRequired(false);
 
         Option csvCharsetOption = new Option("csv_charset", true, "CSV file charset (optional default 'UTF-8')");
@@ -92,6 +92,9 @@ public class App {
         Option pdfOption = new Option("pdf", true, "PDF output file (optional, use instead -txt)");
         pdfOption.setRequired(false);
 
+        Option dpiOption = new Option("dpi", true, "PDF output file dpi");
+        dpiOption.setRequired(false);
+
         Option txtOption = new Option("txt", true, "TXT output file (optional, use instead -pdf)");
         txtOption.setRequired(false);
 
@@ -110,6 +113,7 @@ public class App {
         options.addOption(ftlFileOption);
         options.addOption(ftlEncodingOption);
         options.addOption(pdfOption);
+        options.addOption(dpiOption);
         options.addOption(txtOption);
         options.addOption(txtCharsetOption);
         options.addOption(eachOption);
@@ -130,11 +134,20 @@ public class App {
 
                     String ftlFile = cmd.getOptionValue("ftl_file");
                     String ftlEncoding = cmd.getOptionValue("ftl_encoding", "UTF-8");
-                    Configuration cfg = new Configuration(Configuration.VERSION_2_3_30);
+                    Configuration cfg = new Configuration(Configuration.VERSION_2_3_32);
                     cfg.setDirectoryForTemplateLoading(FileSystems.getDefault().getPath(".").toFile());
                     cfg.setDefaultEncoding(ftlEncoding);
+                    cfg.setTagSyntax(Configuration.SQUARE_BRACKET_TAG_SYNTAX);
+                    cfg.setInterpolationSyntax(Configuration.SQUARE_BRACKET_INTERPOLATION_SYNTAX);
                     Template template = cfg.getTemplate(ftlFile);
-                    ITextRenderer renderer = cmd.hasOption("pdf") ? new ITextRenderer() : null;
+                    ITextRenderer renderer = null;
+
+                    if (cmd.hasOption("pdf")) {
+                        int dpi = Integer.parseInt(cmd.getOptionValue("dpi","96"));
+                        float dotsPerPoint = ((float) dpi / 72.0f);
+                        int dotsPerPixel = 1;
+                        renderer = new ITextRenderer(dotsPerPoint,dotsPerPixel);
+                    }
 
                     if (cmd.hasOption("for_each")) {
                         for (HashMap<String, Object> row : rows) {

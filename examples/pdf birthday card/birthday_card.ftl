@@ -28,7 +28,7 @@
     </style>
 </head>
 <body>
-    <h1>Happy ${age}º birthday ${name}!</h1>
+    <h1>Happy [= age]º birthday [= name]!</h1>
     <div class="greet">Built with csv2pdf!</div>
 </body>
 </html>

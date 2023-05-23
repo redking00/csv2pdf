@@ -34,22 +34,25 @@
 
 ### Options: 
 <table>
- <tr><td>-csv_charset <arg></td><td>CSV file charset (optional default 'UTF-8')</td></tr>
- <tr><td>-csv_extension <arg></td><td>CSV file extesion (optional default '')</td></tr>
- <tr><td>-csv_file <arg></td><td>CSV input file (optional, use instead -csv_query)</td></tr>
- <tr><td>-csv_folder <arg></td><td>CSV folder path (optional default '.')</td></tr>
- <tr><td>-csv_query <arg></td><td>CSV query command (optional, use instead -csv_file)</td></tr>
- <tr><td>-csv_separator <arg></td><td>CSV separator character (optional default ';')</td></tr>
+ <tr><td>-csv_charset &lt;arg&gt;</td><td>CSV file charset (optional, default 'UTF-8')</td></tr>
+ <tr><td>-csv_extension &lt;arg&gt;</td><td>CSV file extesion (optional, default '')</td></tr>
+ <tr><td>-csv_file &lt;arg&gt;</td><td>CSV input file (optional, use instead -csv_query)</td></tr>
+ <tr><td>-csv_folder &lt;arg&gt;</td><td>CSV folder path (optional, default '.')</td></tr>
+ <tr><td>-csv_query &lt;arg&gt;</td><td>CSV query command (optional, use instead -csv_file)</td></tr>
+ <tr><td>-csv_separator &lt;arg&gt;</td><td>CSV separator character (optional, default ';')</td></tr>
  <tr><td>-for_each</td><td>Generate one file per data record (optional, see notes below)</td></tr>
- <tr><td>-ftl_encoding <arg></td><td>FTL input file encoding (optional default 'UTF-8')</td></tr>
- <tr><td>-ftl_file <arg></td><td>FTL input file</td></tr>
- <tr><td>-pdf <arg></td><td>PDF output file (optional, use instead -txt)</td></tr>
- <tr><td>-txt <arg></td><td>TXT output file (optional, use instead -pdf)</td></tr>
- <tr><td>-txt_charset <arg></td><td>TXT output file charset (optional default 'UTF-8')</td></tr>
+ <tr><td>-ftl_encoding &lt;arg&gt;</td><td>FTL input file encoding (optional, default 'UTF-8')</td></tr>
+ <tr><td>-ftl_file &lt;arg&gt;</td><td>FTL input file</td></tr>
+ <tr><td>-pdf &lt;arg&gt;</td><td>PDF output file (optional, use instead -txt)</td></tr>
+ <tr><td>-dpi &lt;arg&gt;</td><td>PDF output file dpi (optional, default 96)</td></tr> 
+ <tr><td>-txt &lt;arg&gt;</td><td>TXT output file (optional, use instead -pdf)</td></tr>
+ <tr><td>-txt_charset &lt;arg&gt;</td><td>TXT output file charset (optional, default 'UTF-8')</td></tr>
+ 
 </table>
 <br>
 
 ### NOTES:<br>
+ - csv2pdf 2.0.0 and above uses freemarker's square bracket tag syntax and square bracket interpolation syntax.
  - Iterate "*rows*" collection inside your template if you are not using the *-for_each* option
  - You can use a templated output file name if using the *-for_each* option
  - See the examples folder!
@@ -64,6 +67,5 @@
 
 
 ### Any idea, suggestion or comment is always appreciated
-![We need your help!](https://www.mememaker.net/api/bucket?path=static/img/memes/full/2019/Mar/3/6/we-need-your-help-to-make-the-magic-happen-127.png)
 
 

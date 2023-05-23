@@ -65,18 +65,18 @@ div.newpage {
     </div>
 
     <div class="content">
-        <#list rows as row>
+        [#list rows as row]
             <table style="text-align:center;margin:auto;font-size:1cm;padding-top:4cm;">
-                <tr><td colspan=2>${row["SSN"]}</td></tr>
-                <tr><td>${row["Last name"]}</td><td rowspan="2">${row["Grade"]}</td></tr>
-                <tr><td>${row["First name"]}</td></tr>
+                <tr><td colspan=2>[= row["SSN"]]</td></tr>
+                <tr><td>[= row["Last name"]]</td><td rowspan="2">[= row["Grade"]]</td></tr>
+                <tr><td>[= row["First name"]]</td></tr>
             </table>
             <table style="text-align:center;margin:auto;font-size:0.5cm;padding-top:2cm;">
                 <tr><th>Test1</th><th>Test2</th><th>Test3</th><th>Test4</th><th>Final</th></tr>
-                <tr><td>${row.Test1}</td><td>${row.Test2}</td><td>${row.Test3}</td><td>${row.Test4}</td><td>${row.Final}</td></tr>
+                <tr><td>[= row.Test1]</td><td>[= row.Test2]</td><td>[= row.Test3]</td><td>[= row.Test4]</td><td>[= row.Final]</td></tr>
             </table>
-            <#sep><div class="newpage"/></#sep>
-        </#list>
+            [#sep]<div class="newpage"/>[/#sep]
+        [/#list]
     </div>
 
 </body>
