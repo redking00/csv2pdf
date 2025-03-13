@@ -52,7 +52,7 @@ public class App {
     }
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException,
-            java.io.IOException, freemarker.template.TemplateException {
+            java.io.IOException, freemarker.template.TemplateException, com.lowagie.text.DocumentException {
         System.out.println("·------------------------------------------·");
         System.out.println("|                   ___             ______ |");
         System.out.println("|   ___________   _|__ \\ ____  ____/ / __/ |");
@@ -60,7 +60,7 @@ public class App {
         System.out.println("| / /__(__  )| |/ / __// /_/ / /_/ / __/   |");
         System.out.println("| \\___/____/ |___/____/ .___/\\__,_/_/      |");
         System.out.println("|                    /_/                   |");
-        System.out.println("|                                 v.2.0.0  |");
+        System.out.println("|                                 v.3.0.0  |");
         System.out.println("·------------------------------------------·");
 
         Options options = new Options();
